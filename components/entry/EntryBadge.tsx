@@ -15,6 +15,9 @@ const EntryBadge = ({ entry, onClick }: HoursBadgeProps) => {
     case 'bram':
       color = 'blue';
       break;
+    case 'time off':
+      color = 'red';
+      break;
     default:
       color = 'orange';
       break;

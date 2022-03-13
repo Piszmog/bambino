@@ -1,4 +1,4 @@
-import { Center, Container, Paper, Skeleton, Table, Title } from '@mantine/core';
+import { Center, Container, Paper, Skeleton, Table, Text, Title } from '@mantine/core';
 import { Week } from '../../lib/models';
 import { getReportData } from '../../lib/report';
 

@@ -24,7 +24,7 @@ const EditEntryModal = ({ opened, onClose, onSave, onDelete, entry }: EditHoursM
       <Select
         label='Baby'
         mb='sm'
-        data={['both', 'bram', 'julia']}
+        data={['both', 'bram', 'julia', 'time off']}
         value={selectedBaby}
         onChange={value => setSelectedBaby(value!)}
       />

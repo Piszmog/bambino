@@ -19,6 +19,7 @@ export const getReportData = (entries: Entry[]): Report => {
   const juliaEntries = entries.filter(entry => entry.baby === 'julia');
   const bramEntries = entries.filter(entry => entry.baby === 'bram');
   const bothEntries = entries.filter(entry => entry.baby === 'both');
+  const timeOffEntries = entries.filter(entry => entry.baby === 'time off');
 
   let juliaCost = 0;
   let juliaHours = 0;
@@ -41,6 +42,15 @@ export const getReportData = (entries: Entry[]): Report => {
   });
 
   bothEntries.forEach(entry => {
+    const hours = getHours(entry.start, entry.end);
+    juliaHours += hours;
+    juliaCost += getCost(entry.baby, hours);
+    bramHours += hours;
+    bramCost += getCost(entry.baby, hours);
+    totalHours += hours;
+  });
+
+  timeOffEntries.forEach(entry => {
     const hours = getHours(entry.start, entry.end);
     juliaHours += hours;
     juliaCost += getCost(entry.baby, hours);
