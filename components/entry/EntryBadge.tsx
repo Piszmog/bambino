@@ -1,4 +1,4 @@
-import { Button, Text } from '@mantine/core';
+import { Button, Group, Text } from '@mantine/core';
 import { Entry } from '../../lib/models';
 
 type HoursBadgeProps = {
@@ -24,7 +24,10 @@ const EntryBadge = ({ entry, onClick }: HoursBadgeProps) => {
   }
   return (
     <Button fullWidth color={color} radius='xl' compact size='xs' onClick={onClick}>
-      <Text>{entry.start.getHours()}{entry.start.getMinutes() != 0 ? `:${entry.start.getMinutes()}` : ''} - {entry.end.getHours()}{entry.end.getMinutes() != 0 ? `:${entry.end.getMinutes()}` : ''}</Text>
+      <Group position='apart'>
+        <Text>{entry.baby}</Text>
+        <Text>{entry.start.getHours()}{entry.start.getMinutes() != 0 ? `:${entry.start.getMinutes()}` : ''} - {entry.end.getHours()}{entry.end.getMinutes() != 0 ? `:${entry.end.getMinutes()}` : ''}</Text>
+      </Group>
     </Button>
   );
 };
