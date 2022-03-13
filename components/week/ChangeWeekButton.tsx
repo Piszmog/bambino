@@ -1,5 +1,6 @@
 import { ActionIcon, Center, Container, Group } from '@mantine/core';
 import { ReactElement } from 'react';
+import { FaAngleDoubleLeft } from 'react-icons/fa';
 
 type ChangeWeekButtonProps = {
   onClick: () => void;
@@ -11,7 +12,7 @@ const ChangeWeekButton = ({ onClick, position, icon }: ChangeWeekButtonProps) =>
   return (
     <Group position={position}>
       <ActionIcon onClick={onClick}>
-        {icon}
+        <FaAngleDoubleLeft/>
       </ActionIcon>
     </Group>
   );
