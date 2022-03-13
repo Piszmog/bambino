@@ -77,7 +77,7 @@ const Week = () => {
             <ChangeWeekButton
               position='right'
               onClick={() => setOffset(offset - 7)}
-              icon={<FaAngleDoubleLeft size='xl' />}
+              icon={<FaAngleDoubleLeft />}
             />
             {
               weekdays.map((date, index) => (
@@ -94,7 +94,7 @@ const Week = () => {
             <ChangeWeekButton
               position='left'
               onClick={() => setOffset(offset + 7)}
-              icon={<FaAngleDoubleRight size='xl' />}
+              icon={<FaAngleDoubleRight />}
             />
           </SimpleGrid>
         </div>
