@@ -1,4 +1,4 @@
-import { SimpleGrid } from '@mantine/core';
+import { ScrollArea, SimpleGrid } from '@mantine/core';
 import { useMemo, useState } from 'react';
 import dayjs from 'dayjs';
 import { FaAngleDoubleLeft, FaAngleDoubleRight } from 'react-icons/fa';
@@ -70,23 +70,35 @@ const Week = () => {
 
   return (
     <div>
-      <WeekHeader date={date} />
-      <SimpleGrid cols={9}>
-        <ChangeWeekButton onClick={() => setOffset(offset - 7)} icon={<FaAngleDoubleLeft size='xl' />} />
-        {
-          weekdays.map((date, index) => (
-            <Day
-              key={index}
-              date={date}
-              data={weekData}
-              loading={loading}
-              onAddClick={() => onAddClick(date)}
-              onEditClick={onEditClick}
+      <ScrollArea style={{ width: '100%' }} scrollbarSize={14}>
+        <div style={{ minWidth: 850 }}>
+          <WeekHeader date={date} />
+          <SimpleGrid cols={9}>
+            <ChangeWeekButton
+              position='right'
+              onClick={() => setOffset(offset - 7)}
+              icon={<FaAngleDoubleLeft size='xl' />}
             />
-          ))
-        }
-        <ChangeWeekButton onClick={() => setOffset(offset + 7)} icon={<FaAngleDoubleRight size='xl' />} />
-      </SimpleGrid>
+            {
+              weekdays.map((date, index) => (
+                <Day
+                  key={index}
+                  date={date}
+                  data={weekData}
+                  loading={loading}
+                  onAddClick={() => onAddClick(date)}
+                  onEditClick={onEditClick}
+                />
+              ))
+            }
+            <ChangeWeekButton
+              position='left'
+              onClick={() => setOffset(offset + 7)}
+              icon={<FaAngleDoubleRight size='xl' />}
+            />
+          </SimpleGrid>
+        </div>
+      </ScrollArea>
       <Report data={weekData} loading={loading} />
       {
         selectedEntry

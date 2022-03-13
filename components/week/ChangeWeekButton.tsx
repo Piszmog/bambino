@@ -1,18 +1,19 @@
-import { ActionIcon, Center } from '@mantine/core';
+import { ActionIcon, Center, Container, Group } from '@mantine/core';
 import { ReactElement } from 'react';
 
 type ChangeWeekButtonProps = {
   onClick: () => void;
+  position: 'left' | 'right';
   icon: ReactElement;
 };
 
-const ChangeWeekButton = ({ onClick, icon }: ChangeWeekButtonProps) => {
+const ChangeWeekButton = ({ onClick, position, icon }: ChangeWeekButtonProps) => {
   return (
-    <Center>
+    <Group position={position}>
       <ActionIcon onClick={onClick}>
         {icon}
       </ActionIcon>
-    </Center>
+    </Group>
   );
 };
 
