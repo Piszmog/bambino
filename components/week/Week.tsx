@@ -73,7 +73,7 @@ const Week = () => {
       <ScrollArea style={{ width: '100%' }} scrollbarSize={14}>
         <div style={{ minWidth: 850 }}>
           <WeekHeader date={date} />
-          <SimpleGrid cols={9}>
+          <SimpleGrid cols={9} mb='xl'>
             <ChangeWeekButton
               position='right'
               onClick={() => setOffset(offset - 7)}
