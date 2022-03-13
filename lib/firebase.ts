@@ -1,7 +1,20 @@
 import { initializeApp } from '@firebase/app';
-import { arrayRemove, arrayUnion, doc, getFirestore, runTransaction, setDoc, updateDoc } from '@firebase/firestore';
+import {
+  arrayRemove,
+  arrayUnion,
+  doc,
+  getFirestore,
+  onSnapshot,
+  runTransaction,
+  setDoc,
+  updateDoc,
+} from '@firebase/firestore';
 import { Entry, Week } from './models';
 import { useDocument } from 'react-firebase-hooks/firestore';
+import { getAuth, GoogleAuthProvider } from '@firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useEffect, useState } from 'react';
+import { UserContextData } from './context';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDYicCA4A-oNy7qqkPmBAQYBNZmrTATwps',
@@ -17,6 +30,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+export const auth = getAuth(app);
+export const googleAuthProvider = new GoogleAuthProvider();
 
 export const useWeek = (id: string): [Week | undefined, boolean] => {
   const [data, loading] = useDocument(
@@ -83,4 +98,25 @@ export const deleteEntry = (id: string, entry: Entry): Promise<void> => {
   return updateDoc(doc(db, 'weeks', id), {
     entries: arrayRemove(entry),
   });
+};
+
+export const useAuth = (): UserContextData => {
+  const [user] = useAuthState(auth);
+  const [loading, setLoading] = useState(true);
+  const [email, setEmail] = useState(null);
+
+  useEffect(() => {
+    let unsubscribe;
+    if (user) {
+      const ref = doc(db, 'users', user.uid!);
+      unsubscribe = onSnapshot(ref, snapshot => {
+        setEmail(snapshot.data()?.email);
+        setLoading(false);
+      });
+    }
+
+    return unsubscribe;
+  }, [user]);
+
+  return { user, email, loading };
 };

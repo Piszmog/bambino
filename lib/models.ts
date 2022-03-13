@@ -9,3 +9,8 @@ export interface Entry {
   start: Date;
   end: Date;
 }
+
+export interface UserData {
+  email: string;
+  displayName: string;
+}

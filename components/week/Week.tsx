@@ -9,7 +9,7 @@ import { Entry } from '../../lib/models';
 import { getWeekDays, toWeekId } from '../../lib/week';
 import EditEntryModal from '../entry/EditEntryModal';
 import AddEntryModal from '../entry/AddEntryModal';
-import { addEntry, deleteEntry, updateEntry, useWeek } from '../../lib/db';
+import { addEntry, deleteEntry, updateEntry, useWeek } from '../../lib/firebase';
 import Day from './Day';
 
 const Week = () => {

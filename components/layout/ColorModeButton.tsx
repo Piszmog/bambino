@@ -11,12 +11,13 @@ const ColorModeButton = () => {
       color={dark ? 'yellow' : 'blue'}
       onClick={() => toggleColorScheme()}
       title='Toggle color scheme'
-      radius='lg'
+      radius='xl'
+      size='lg'
     >
       {dark ?
-        <FaSun size={18} />
+        <FaSun size={20} />
         :
-        <FaMoon size={18} />
+        <FaMoon size={20} />
       }
     </ActionIcon>
   );

@@ -1,6 +1,8 @@
 import { Group, Header as MHeader, Title } from '@mantine/core';
 import ColorModeButton from './ColorModeButton';
 import { FaBaby } from 'react-icons/fa';
+import Avatar from './Avatar';
+import UserMenu from './UserMenu';
 
 type AppHeaderProps = {
   title: string;
@@ -25,6 +27,7 @@ const Header = ({ title }: AppHeaderProps) => {
         </Title>
         <Group>
           <ColorModeButton />
+          <UserMenu/>
         </Group>
       </Group>
     </MHeader>

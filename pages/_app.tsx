@@ -5,12 +5,15 @@ import { useState } from 'react';
 import { useColorScheme } from '@mantine/hooks';
 import Main from '../components/layout/Main';
 import Header from '../components/layout/Header';
+import { UserContext } from '../lib/context';
+import { useAuth } from '../lib/firebase';
 
 const App = ({ Component, pageProps }: AppProps) => {
   const preferredColorScheme = useColorScheme();
   const [colorScheme, setColorScheme] = useState<ColorScheme>(preferredColorScheme);
   const toggleColorScheme = (value?: ColorScheme) =>
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'));
+  const userData = useAuth();
 
   return (
     <>
@@ -25,9 +28,11 @@ const App = ({ Component, pageProps }: AppProps) => {
           withNormalizeCSS
           theme={{ colorScheme }}
         >
-          <Main header={<Header title={'Bambino'} />}>
-            <Component {...pageProps} />
-          </Main>
+          <UserContext.Provider value={userData}>
+            <Main header={<Header title={'Bambino'} />}>
+              <Component {...pageProps} />
+            </Main>
+          </UserContext.Provider>
         </MantineProvider>
       </ColorSchemeProvider>
     </>
