@@ -34,7 +34,6 @@ const AddEntryModal = ({ date, opened, onClose, onSave }: EditHoursModalProps) =
         label='Hours'
         value={dates}
         onChange={setDates}
-        format='12'
         clearable
       />
       <Group position='right' mt='xl'>

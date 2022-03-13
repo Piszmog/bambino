@@ -32,7 +32,7 @@ const EditEntryModal = ({ opened, onClose, onSave, onDelete, entry }: EditHoursM
         label='Hours'
         value={dates}
         onChange={setDates}
-        format='12' />
+      />
       <Group position='right' mt='xl'>
         <Button color='gray' onClick={onClose}>Cancel</Button>
         <Button color='red' onClick={onDelete}>Delete</Button>
