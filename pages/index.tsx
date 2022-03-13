@@ -7,7 +7,7 @@ import { Center, Container, Loader } from '@mantine/core';
 import NotAuthorized from '../components/user/NotAuthorized';
 
 const Home: NextPage = () => {
-  const { user, email, loading } = useContext(UserContext);
+  const { user, displayName, loading } = useContext(UserContext);
 
   if (!user) {
     return <UserLogin />;
@@ -23,7 +23,7 @@ const Home: NextPage = () => {
     );
   }
 
-  if (!email) {
+  if (!displayName) {
     return <NotAuthorized />;
   }
 

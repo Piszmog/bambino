@@ -103,14 +103,14 @@ export const deleteEntry = (id: string, entry: Entry): Promise<void> => {
 export const useAuth = (): UserContextData => {
   const [user] = useAuthState(auth);
   const [loading, setLoading] = useState(true);
-  const [email, setEmail] = useState(null);
+  const [displayName, setDisplayName] = useState(null);
 
   useEffect(() => {
     let unsubscribe;
     if (user) {
-      const ref = doc(db, 'users', user.uid!);
+      const ref = doc(db, 'users', user.email!);
       unsubscribe = onSnapshot(ref, snapshot => {
-        setEmail(snapshot.data()?.email);
+        setDisplayName(snapshot.data()?.displayName);
         setLoading(false);
       });
     }
@@ -118,5 +118,5 @@ export const useAuth = (): UserContextData => {
     return unsubscribe;
   }, [user]);
 
-  return { user, email, loading };
+  return { user, displayName, loading };
 };
