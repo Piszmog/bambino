@@ -14,6 +14,27 @@ type EditHoursModalProps = {
 const AddEntryModal = ({ date, opened, onClose, onSave }: EditHoursModalProps) => {
   const [dates, setDates] = useState<[Date, Date]>(getDefaultValue());
   const [selectedBaby, setSelectedBaby] = useState('both');
+  const [timeRangeError, setTimeRangeError] = useState('');
+
+  const handleChange = (values: [Date, Date]) => {
+    if (values[0] > values[1]) {
+      setTimeRangeError('Start time must be before end time');
+    } else {
+      setTimeRangeError('');
+      setDates(values);
+    }
+  };
+
+  const handleOnSave = () => {
+    if (!timeRangeError) {
+      onSave({
+        id: uuidv4(),
+        start: updateDate(dates![0], date),
+        end: updateDate(dates![1], date),
+        baby: selectedBaby!,
+      });
+    }
+  };
 
   return (
     <Modal
@@ -33,18 +54,19 @@ const AddEntryModal = ({ date, opened, onClose, onSave }: EditHoursModalProps) =
       <TimeRangeInput
         label='Hours'
         value={dates}
-        onChange={setDates}
+        onChange={handleChange}
+        error={timeRangeError}
         clearable
+        required
       />
       <Group position='right' mt='xl'>
         <Button color='gray' onClick={onClose}>Cancel</Button>
         <Button
-          onClick={() => onSave({
-            id: uuidv4(),
-            start: updateDate(dates![0], date),
-            end: updateDate(dates![1], date),
-            baby: selectedBaby!,
-          })}>Save</Button>
+          onClick={handleOnSave}
+          disabled={timeRangeError !== ''}
+        >
+          Save
+        </Button>
       </Group>
     </Modal>
   );
