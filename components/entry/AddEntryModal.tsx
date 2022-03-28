@@ -54,7 +54,7 @@ const getDefaultValue = (): [Date, Date] => {
   const start = new Date();
   const end = new Date();
   start.setHours(8, 0, 0, 0);
-  end.setHours(14, 0, 0, 0);
+  end.setHours(15, 0, 0, 0);
   return [start, end];
 };
 
