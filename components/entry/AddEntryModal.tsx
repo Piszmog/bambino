@@ -46,7 +46,7 @@ const AddEntryModal = ({ date, opened, onClose, onSave }: EditHoursModalProps) =
         label='Baby'
         mb='sm'
         placeholder='Select a baby'
-        data={['both', 'bram', 'julia', 'time off']}
+        data={['both', 'bram', 'julia', 'time off', 'julia: time off', 'bram: time off']}
         value={selectedBaby}
         onChange={value => setSelectedBaby(value!)}
         required
