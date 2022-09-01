@@ -6,14 +6,7 @@ type AvatarProps = {
 };
 
 const Avatar = ({ src, displayName }: AvatarProps) => {
-  return (
-    <MAvatar
-      src={src}
-      alt={displayName}
-      radius='xl'
-      size='md'
-    />
-  );
+  return <MAvatar src={src} alt={displayName} radius="xl" size="md" />;
 };
 
 export default Avatar;

@@ -10,7 +10,7 @@ type AppHeaderProps = {
 
 const Header = ({ title }: AppHeaderProps) => {
   return (
-    <MHeader height={60} p='xs'>
+    <MHeader height={60} p="xs">
       <Group
         style={{
           height: '100%',
@@ -19,7 +19,7 @@ const Header = ({ title }: AppHeaderProps) => {
           paddingLeft: 20,
           paddingRight: 20,
         }}
-        position='apart'
+        position="apart"
       >
         <Title order={3}>
           <FaBaby />
@@ -27,7 +27,7 @@ const Header = ({ title }: AppHeaderProps) => {
         </Title>
         <Group>
           <ColorModeButton />
-          <UserMenu/>
+          <UserMenu />
         </Group>
       </Group>
     </MHeader>

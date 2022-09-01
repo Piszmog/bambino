@@ -15,20 +15,14 @@ const UserMenu = () => {
 
   return (
     <>
-      {
-        user &&
-        <Menu
-          control={<AvatarButton src={user.photoURL!} displayName={user.displayName!} />}
-        >
+      {user && (
+        <Menu control={<AvatarButton src={user.photoURL!} displayName={user.displayName!} />}>
           <Menu.Label>{user.displayName ?? 'User'}</Menu.Label>
-          <Menu.Item
-            icon={<FaSignOutAlt size={14} />}
-            onClick={handleLogout}
-          >
+          <Menu.Item icon={<FaSignOutAlt size={14} />} onClick={handleLogout}>
             Sign Out
           </Menu.Item>
         </Menu>
-      }
+      )}
     </>
   );
 };
@@ -43,7 +37,8 @@ const AvatarButton = forwardRef<HTMLButtonElement, AvatarButtonProps>(
     <UnstyledButton ref={ref} {...others}>
       <Avatar src={src} displayName={displayName} />
     </UnstyledButton>
-  ));
+  )
+);
 
 AvatarButton.displayName = 'AvatarButton';
 

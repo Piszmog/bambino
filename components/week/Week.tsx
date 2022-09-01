@@ -32,11 +32,10 @@ const Week = () => {
   };
 
   const onAdd = (entry: Entry) => {
-    addEntry(weekData!.id, entry)
-      .then(() => {
-        setSelectedDate(undefined);
-        setOpenAdd(false);
-      });
+    addEntry(weekData!.id, entry).then(() => {
+      setSelectedDate(undefined);
+      setOpenAdd(false);
+    });
   };
 
   const onAddClose = () => {
@@ -50,11 +49,10 @@ const Week = () => {
   };
 
   const onEdit = (entry: Entry) => {
-    updateEntry(weekData!.id, selectedEntry!, entry)
-      .then(() => {
-        setSelectedEntry(undefined);
-        setOpenEdit(false);
-      });
+    updateEntry(weekData!.id, selectedEntry!, entry).then(() => {
+      setSelectedEntry(undefined);
+      setOpenEdit(false);
+    });
   };
 
   const onEditClose = () => {
@@ -63,55 +61,51 @@ const Week = () => {
   };
 
   const onDelete = () => {
-    deleteEntry(weekData!.id, selectedEntry!)
-      .then(() => {
-        setSelectedEntry(undefined);
-        setOpenEdit(false);
-      });
+    deleteEntry(weekData!.id, selectedEntry!).then(() => {
+      setSelectedEntry(undefined);
+      setOpenEdit(false);
+    });
   };
 
   return (
     <div>
-      <Center mb='md'>
-        <Group direction='column' position='center' spacing='xs'>
+      <Center mb="md">
+        <Group direction="column" position="center" spacing="xs">
           <Group>
             <ChangeWeekButton
-              position='right'
+              position="right"
               onClick={() => setOffset(offset - 7)}
               icon={<FaAngleDoubleLeft />}
             />
             <Title>{monthName[date.getMonth()]}</Title>
             <ChangeWeekButton
-              position='left'
+              position="left"
               onClick={() => setOffset(offset + 7)}
               icon={<FaAngleDoubleRight />}
             />
           </Group>
-          <Text
-            color='dimmed'>{monthName[weekdays[0].getMonth()]} {weekdays[0].getDate()} - {monthName[weekdays[6].getMonth()]} {weekdays[6].getDate()}
+          <Text color="dimmed">
+            {monthName[weekdays[0].getMonth()]} {weekdays[0].getDate()} -{' '}
+            {monthName[weekdays[6].getMonth()]} {weekdays[6].getDate()}
           </Text>
         </Group>
       </Center>
-      <Grid columns={14} justify='center' m='md'>
-        {
-          weekdays.map((date, index) => (
-            <Grid.Col key={index} sm={2} grow>
-              <Day
-                key={index}
-                date={date}
-                data={weekData}
-                loading={loading}
-                onAddClick={() => onAddClick(date)}
-                onEditClick={onEditClick}
-              />
-            </Grid.Col>
-          ))
-        }
+      <Grid columns={14} justify="center" m="md">
+        {weekdays.map((date, index) => (
+          <Grid.Col key={index} sm={2} grow>
+            <Day
+              key={index}
+              date={date}
+              data={weekData}
+              loading={loading}
+              onAddClick={() => onAddClick(date)}
+              onEditClick={onEditClick}
+            />
+          </Grid.Col>
+        ))}
       </Grid>
       <Report data={weekData} loading={loading} />
-      {
-        selectedEntry
-        &&
+      {selectedEntry && (
         <EditEntryModal
           opened={openEdit}
           onClose={onEditClose}
@@ -119,17 +113,10 @@ const Week = () => {
           onDelete={onDelete}
           entry={selectedEntry}
         />
-      }
-      {
-        selectedDate
-        &&
-        <AddEntryModal
-          opened={openAdd}
-          date={selectedDate}
-          onClose={onAddClose}
-          onSave={onAdd}
-        />
-      }
+      )}
+      {selectedDate && (
+        <AddEntryModal opened={openAdd} date={selectedDate} onClose={onAddClose} onSave={onAdd} />
+      )}
     </div>
   );
 };

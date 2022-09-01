@@ -10,9 +10,7 @@ type ChangeWeekButtonProps = {
 const ChangeWeekButton = ({ onClick, position, icon }: ChangeWeekButtonProps) => {
   return (
     <Group position={position}>
-      <ActionIcon onClick={onClick}>
-        {icon}
-      </ActionIcon>
+      <ActionIcon onClick={onClick}>{icon}</ActionIcon>
     </Group>
   );
 };

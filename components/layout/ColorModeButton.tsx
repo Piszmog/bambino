@@ -7,18 +7,14 @@ const ColorModeButton = () => {
 
   return (
     <ActionIcon
-      variant='outline'
+      variant="outline"
       color={dark ? 'yellow' : 'blue'}
       onClick={() => toggleColorScheme()}
-      title='Toggle color scheme'
-      radius='xl'
-      size='lg'
+      title="Toggle color scheme"
+      radius="xl"
+      size="lg"
     >
-      {dark ?
-        <FaSun size={20} />
-        :
-        <FaMoon size={20} />
-      }
+      {dark ? <FaSun size={20} /> : <FaMoon size={20} />}
     </ActionIcon>
   );
 };

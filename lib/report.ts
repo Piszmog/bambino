@@ -16,10 +16,10 @@ export interface BabyCost {
 }
 
 export const getReportData = (entries: Entry[]): Report => {
-  const juliaEntries = entries.filter(entry => entry.baby === 'julia');
-  const bramEntries = entries.filter(entry => entry.baby === 'bram');
-  const bothEntries = entries.filter(entry => entry.baby === 'both');
-  const timeOffEntries = entries.filter(entry => entry.baby === 'time off');
+  const juliaEntries = entries.filter((entry) => entry.baby === 'julia');
+  const bramEntries = entries.filter((entry) => entry.baby === 'bram');
+  const bothEntries = entries.filter((entry) => entry.baby === 'both');
+  const timeOffEntries = entries.filter((entry) => entry.baby === 'time off');
 
   let juliaCost = 0;
   let juliaHours = 0;
@@ -27,21 +27,21 @@ export const getReportData = (entries: Entry[]): Report => {
   let bramHours = 0;
   let totalHours = 0;
 
-  juliaEntries.forEach(entry => {
+  juliaEntries.forEach((entry) => {
     const hours = getHours(entry.start, entry.end);
     juliaHours += hours;
     juliaCost += getCost(entry.baby, hours);
     totalHours += hours;
   });
 
-  bramEntries.forEach(entry => {
+  bramEntries.forEach((entry) => {
     const hours = getHours(entry.start, entry.end);
     bramHours += hours;
     bramCost += getCost(entry.baby, hours);
     totalHours += hours;
   });
 
-  bothEntries.forEach(entry => {
+  bothEntries.forEach((entry) => {
     const hours = getHours(entry.start, entry.end);
     juliaHours += hours;
     juliaCost += getCost(entry.baby, hours);
@@ -50,7 +50,7 @@ export const getReportData = (entries: Entry[]): Report => {
     totalHours += hours;
   });
 
-  timeOffEntries.forEach(entry => {
+  timeOffEntries.forEach((entry) => {
     const hours = getHours(entry.start, entry.end);
     juliaHours += hours;
     juliaCost += getCost(entry.baby, hours);
@@ -79,5 +79,5 @@ const getCost = (baby: string, hours: number): number => {
 };
 
 const getHours = (start: Date, end: Date): number => {
-  return (end.getHours() - start.getHours()) + (end.getMinutes() - start.getMinutes()) / 60;
+  return end.getHours() - start.getHours() + (end.getMinutes() - start.getMinutes()) / 60;
 };

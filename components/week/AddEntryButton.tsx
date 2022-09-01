@@ -7,7 +7,7 @@ type AddEntryButtonProps = {
 
 const AddEntryButton = ({ onClick }: AddEntryButtonProps) => {
   return (
-    <Center mb='xs'>
+    <Center mb="xs">
       <ActionIcon onClick={onClick}>
         <FaPlus />
       </ActionIcon>

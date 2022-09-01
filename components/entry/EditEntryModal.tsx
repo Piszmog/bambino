@@ -40,31 +40,23 @@ const EditEntryModal = ({ opened, onClose, onSave, onDelete, entry }: EditHoursM
   };
 
   return (
-    <Modal
-      opened={opened}
-      onClose={onClose}
-      title='Edit Entry'
-    >
+    <Modal opened={opened} onClose={onClose} title="Edit Entry">
       <Select
-        label='Baby'
-        mb='sm'
+        label="Baby"
+        mb="sm"
         data={['both', 'bram', 'julia', 'time off', 'julia: time off', 'bram: time off']}
         value={selectedBaby}
-        onChange={value => setSelectedBaby(value!)}
+        onChange={(value) => setSelectedBaby(value!)}
       />
-      <TimeRangeInput
-        label='Hours'
-        value={dates}
-        onChange={handleChange}
-        error={timeRangeError}
-      />
-      <Group position='right' mt='xl'>
-        <Button color='gray' onClick={onClose}>Cancel</Button>
-        <Button color='red' onClick={onDelete}>Delete</Button>
-        <Button
-          onClick={handleOnSave}
-          disabled={timeRangeError !== ''}
-        >
+      <TimeRangeInput label="Hours" value={dates} onChange={handleChange} error={timeRangeError} />
+      <Group position="right" mt="xl">
+        <Button color="gray" onClick={onClose}>
+          Cancel
+        </Button>
+        <Button color="red" onClick={onDelete}>
+          Delete
+        </Button>
+        <Button onClick={handleOnSave} disabled={timeRangeError !== ''}>
           Save
         </Button>
       </Group>

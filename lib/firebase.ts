@@ -26,7 +26,6 @@ const firebaseConfig = {
   appId: '1:907549812531:web:4783cd8e0a5637b782c046',
 };
 
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -34,12 +33,9 @@ export const auth = getAuth(app);
 export const googleAuthProvider = new GoogleAuthProvider();
 
 export const useWeek = (id: string): [Week | undefined, boolean] => {
-  const [data, loading] = useDocument(
-    doc(db, 'weeks', id),
-    {
-      snapshotListenOptions: { includeMetadataChanges: true },
-    },
-  );
+  const [data, loading] = useDocument(doc(db, 'weeks', id), {
+    snapshotListenOptions: { includeMetadataChanges: true },
+  });
 
   if (loading || !data) {
     return [undefined, loading];
@@ -48,17 +44,21 @@ export const useWeek = (id: string): [Week | undefined, boolean] => {
     addWeek(id);
     return [{ id, entries: [] }, false];
   }
-  return [{
-    id: data.id,
-    entries: data.data()?.entries.map((e: any) => {
-      return {
-        id: e.id,
-        baby: e.baby,
-        start: e.start.toDate(),
-        end: e.end.toDate(),
-      };
-    }) ?? [],
-  }, false];
+  return [
+    {
+      id: data.id,
+      entries:
+        data.data()?.entries.map((e: any) => {
+          return {
+            id: e.id,
+            baby: e.baby,
+            start: e.start.toDate(),
+            end: e.end.toDate(),
+          };
+        }) ?? [],
+    },
+    false,
+  ];
 };
 
 const addWeek = (id: string) => {
@@ -74,23 +74,16 @@ export const addEntry = (id: string, entry: Entry): Promise<void> => {
 export const updateEntry = (id: string, oldEntry: Entry, newEntry: Entry): Promise<void> => {
   return runTransaction(db, (transaction) => {
     const docRef = doc(db, 'weeks', id);
-    return transaction.get(docRef)
-      .then(doc => {
-        if (doc && doc.exists()) {
-          transaction.update(
-            docRef,
-            {
-              entries: arrayRemove(oldEntry),
-            },
-          );
-          transaction.update(
-            docRef,
-            {
-              entries: arrayUnion(newEntry),
-            },
-          );
-        }
-      });
+    return transaction.get(docRef).then((doc) => {
+      if (doc && doc.exists()) {
+        transaction.update(docRef, {
+          entries: arrayRemove(oldEntry),
+        });
+        transaction.update(docRef, {
+          entries: arrayUnion(newEntry),
+        });
+      }
+    });
   });
 };
 
@@ -109,7 +102,7 @@ export const useAuth = (): UserContextData => {
     let unsubscribe;
     if (user) {
       const ref = doc(db, 'users', user.email!);
-      unsubscribe = onSnapshot(ref, snapshot => {
+      unsubscribe = onSnapshot(ref, (snapshot) => {
         setDisplayName(snapshot.data()?.displayName);
         setLoading(false);
       });

@@ -27,9 +27,7 @@ const Home: NextPage = () => {
     return <NotAuthorized />;
   }
 
-  return (
-    <Week />
-  );
+  return <Week />;
 };
 
 export default Home;

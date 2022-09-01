@@ -30,14 +30,17 @@ const EntryBadge = ({ entry, onClick }: HoursBadgeProps) => {
   }
 
   return (
-    <Button fullWidth color={color} radius='xl' compact size='xs' onClick={onClick}>
-      <Group position='apart'>
+    <Button fullWidth color={color} radius="xl" compact size="xs" onClick={onClick}>
+      <Group position="apart">
         <Text>{entry.baby}</Text>
-        {
-          !entry.baby.includes('time off') ? (
-            <Text>{entry.start.getHours()}{entry.start.getMinutes() != 0 ? `:${entry.start.getMinutes()}` : ''} - {entry.end.getHours()}{entry.end.getMinutes() != 0 ? `:${entry.end.getMinutes()}` : ''}</Text>
-          ) : null
-        }
+        {!entry.baby.includes('time off') ? (
+          <Text>
+            {entry.start.getHours()}
+            {entry.start.getMinutes() != 0 ? `:${entry.start.getMinutes()}` : ''} -{' '}
+            {entry.end.getHours()}
+            {entry.end.getMinutes() != 0 ? `:${entry.end.getMinutes()}` : ''}
+          </Text>
+        ) : null}
       </Group>
     </Button>
   );

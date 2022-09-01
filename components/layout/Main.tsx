@@ -8,11 +8,14 @@ interface HomePageProps extends React.HTMLProps<HTMLHtmlElement> {
 const Main = (props: HomePageProps) => {
   return (
     <AppShell
-      padding='md'
+      padding="md"
       // navbar={<Navbar width={{ base: 300 }} height={500} padding="xs">{/* Navbar content */}</Navbar>}
       header={props.header}
       styles={(theme) => ({
-        main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] },
+        main: {
+          backgroundColor:
+            theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0],
+        },
       })}
     >
       {props.children}

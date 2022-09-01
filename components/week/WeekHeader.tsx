@@ -14,17 +14,15 @@ const WeekHeader = ({ date }: WeekHeaderProps) => {
       <Center>
         <Title>{monthName[date.getMonth()]}</Title>
       </Center>
-      <SimpleGrid cols={9} mb='xs'>
+      <SimpleGrid cols={9} mb="xs">
         <div />
-        {
-          weekdayNames.map((name, index) => (
-            <Paper key={index} shadow='xl'>
-              <Center>
-                <Title order={3}>{name}</Title>
-              </Center>
-            </Paper>
-          ))
-        }
+        {weekdayNames.map((name, index) => (
+          <Paper key={index} shadow="xl">
+            <Center>
+              <Title order={3}>{name}</Title>
+            </Center>
+          </Paper>
+        ))}
         <div />
       </SimpleGrid>
     </>

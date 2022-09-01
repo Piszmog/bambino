@@ -21,25 +21,20 @@ const Day = ({ date, data, loading, onAddClick, onEditClick }: DayProps) => {
   }
 
   return (
-    <Paper shadow='xl'>
-      <Group direction='column' position='center' spacing='xs'>
+    <Paper shadow="xl">
+      <Group direction="column" position="center" spacing="xs">
         <Title order={2}>{weekdayNames[dayIndex]}</Title>
         <Title order={3}>{date.getDate()}</Title>
       </Group>
-      <Divider mb='xs' />
-      <Group p='sm'>
-        {
-          data && data.entries.filter(entry => isSameDate(entry.start, date)).map((entry) => (
-            <EntryBadge
-              key={entry.id}
-              entry={entry}
-              onClick={() => onEditClick(entry)}
-            />
-          ))
-        }
-        {
-          loading && <Skeleton height={8} radius='xl' />
-        }
+      <Divider mb="xs" />
+      <Group p="sm">
+        {data &&
+          data.entries
+            .filter((entry) => isSameDate(entry.start, date))
+            .map((entry) => (
+              <EntryBadge key={entry.id} entry={entry} onClick={() => onEditClick(entry)} />
+            ))}
+        {loading && <Skeleton height={8} radius="xl" />}
       </Group>
       <AddEntryButton onClick={onAddClick} />
     </Paper>

@@ -7,11 +7,7 @@ const LoginButton = () => {
     await signInWithPopup(auth, googleAuthProvider);
   };
 
-  return (
-    <Button onClick={handleLogin}>
-      Login
-    </Button>
-  );
+  return <Button onClick={handleLogin}>Login</Button>;
 };
 
 export default LoginButton;

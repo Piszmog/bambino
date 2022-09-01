@@ -2,7 +2,7 @@ import { getMonthDays, isSameDate } from '@mantine/dates';
 
 export const getWeekDays = (date: Date): Date[] => {
   let monthDays = getMonthDays(date);
-  const dates = monthDays.find(week => week.find(day => isSameDate(day, date)));
+  const dates = monthDays.find((week) => week.find((day) => isSameDate(day, date)));
   return dates || [];
 };
 
